@@ -19,8 +19,7 @@ public class UserDetailedDto {
 
     public String profile_type;
 
-    public List<SolicitationDto> solicitations;
-
-    public List<ContributionDto> contributions;
+    public Integer amountSolicitations;
+    public Integer amountContributions;
 
 }

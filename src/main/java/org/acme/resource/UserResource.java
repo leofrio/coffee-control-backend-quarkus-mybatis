@@ -22,8 +22,9 @@ public class UserResource {
         return userMapper.getAllUsers(limit,offset);
     }
     @GET
+    @Path("/{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public UserDetailedDto getSpecificUser(@QueryParam("id") Integer id) {
+    public UserDetailedDto getSpecificUser(@PathParam("id") Integer id) {
         return userMapper.getSpecificUser(id);
     }
 }
