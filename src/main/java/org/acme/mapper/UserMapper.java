@@ -3,6 +3,7 @@ package org.acme.mapper;
 import org.acme.dto.SolicitationDto;
 import org.acme.dto.UserDetailedDto;
 import org.acme.dto.UserDto;
+import org.acme.form.UserPostForm;
 import org.acme.model.User;
 import org.apache.ibatis.annotations.*;
 
@@ -55,4 +56,8 @@ public interface UserMapper {
             "order by \n" +
             " u.id;  ")
     UserDetailedDto getSpecificUser(@Param("id") Integer id);
+
+    @Insert("insert into users(full_name,registration,pword,profile_id) values (#{user.name},#{user.registration},#{user.password},#{user.profile_id})")
+    @SelectKey(statement = {"Select max(id) from users"},keyProperty = "user.id",keyColumn = "id",before = false,resultType = Integer.class)
+    void register(@Param("user") User user);
 }

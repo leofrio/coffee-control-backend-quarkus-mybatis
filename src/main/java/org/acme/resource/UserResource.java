@@ -3,8 +3,10 @@ package org.acme.resource;
 import lombok.Getter;
 import org.acme.dto.UserDetailedDto;
 import org.acme.dto.UserDto;
+import org.acme.form.UserPostForm;
 import org.acme.mapper.UserMapper;
 import org.acme.service.UserService;
+import org.jboss.logging.annotations.Pos;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -30,5 +32,12 @@ public class UserResource {
     @Produces(MediaType.APPLICATION_JSON)
     public UserDetailedDto getSpecificUser(@PathParam("id") Integer id) {
         return userService.getSpecificUser(id);
+    }
+
+    @POST
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public UserDto register(UserPostForm form) {
+        return userService.register(form);
     }
 }
