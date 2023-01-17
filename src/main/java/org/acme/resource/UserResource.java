@@ -4,6 +4,7 @@ import lombok.Getter;
 import org.acme.dto.UserDetailedDto;
 import org.acme.dto.UserDto;
 import org.acme.form.UserPostForm;
+import org.acme.form.UserUpdateForm;
 import org.acme.mapper.UserMapper;
 import org.acme.service.UserService;
 import org.jboss.logging.annotations.Pos;
@@ -40,4 +41,19 @@ public class UserResource {
     public UserDto register(UserPostForm form) {
         return userService.register(form);
     }
+
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/{id}")
+    public UserDto updateUser(@PathParam("id") Integer id,UserUpdateForm form) {
+        return userService.update(id,form);
+    }
+    @DELETE
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("/{id}")
+    public UserDto updateUser(@PathParam("id") Integer id) {
+        return userService.deleteUser(id);
+    }
+
 }
